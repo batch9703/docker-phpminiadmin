@@ -6,7 +6,7 @@ If you are not in Japan, change the "TZ" and "LANG" of the Dockerfile and then "
 ## ENV parameter
 * `ACCESS_PWD`: Access password. No password if not set.
 * `DB_HOST`: Database host name.
-* `DB_PORT`: Database port no. "3307" if not set.
+* `DB_PORT`: Database port no. "3306" if not set.
 * `DB_NAME`: Database name
 * `DB_USER`: Database user
 * `DB_PASSWORD`: Database password
