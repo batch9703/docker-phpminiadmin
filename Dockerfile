@@ -1,9 +1,9 @@
-FROM alpine:3.11.6
+FROM alpine:3.13.0
 
 LABEL maintainer="batch9703"
 
 ARG TZ="Asia/Tokyo"
-ARG php_ver="7.3.17-r0"
+ARG php_ver="7.4.14-r0"
 ARG DIR="/opt/dbadmin"
 
 ENV LANG="ja_JP.UTF-8"
@@ -30,7 +30,7 @@ RUN set -x \
  && sed -i -e 's/'\''host'\''=>"",/'\''host'\''=>getenv("DB_HOST")?:"",/g' ./index.php \
  && sed -i -e 's/'\''port'\''=>"",/'\''port'\''=>getenv("DB_PORT")?:"3306",/g' ./index.php \
  && \
- : "partition" \
+ : "permission" \
  && addgroup -S dbadmin \
  && adduser -S -G dbadmin dbadmin \
  && chown -R dbadmin:dbadmin ${DIR} \
