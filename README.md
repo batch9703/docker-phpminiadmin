@@ -1,7 +1,7 @@
 # docker-phpminiadmin
-smallest database management tool on docker.
-docker execute phpminiadmin.
-phpminiadmin with env parameter.
+smallest database management tool on docker.  
+docker execute phpminiadmin.  
+phpminiadmin with env parameter.  
 If you are not in Japan, change the "TZ" and "LANG" of the Dockerfile and then "docker build" again.
 ## ENV parameter
 * `ACCESS_PWD`: Access password. No password if not set.
