@@ -1,9 +1,9 @@
-FROM alpine:3.13.0
+FROM alpine:3.14
 
 LABEL maintainer="batch9703"
 
 ARG TZ="Asia/Tokyo"
-ARG php_ver="7.4.14-r0"
+ARG php_ver="8.0.12-r0"
 ARG DIR="/opt/dbadmin"
 
 ENV LANG="ja_JP.UTF-8"
@@ -11,13 +11,15 @@ ENV LANG="ja_JP.UTF-8"
 WORKDIR ${DIR}
 
 RUN set -x \
+ && apk update && apk upgrade \
  && apk add --no-cache --virtual .build-deps curl tzdata \
  && \
  : "php" \
- && apk add --no-cache --update \
-    php7=${php_ver} \
-    php7-session=${php_ver} \
-    php7-mysqli=${php_ver} \
+ && apk add --no-cache \
+    php8=${php_ver} \
+    php8-session=${php_ver} \
+    php8-mysqli=${php_ver} \
+ && ln -s /usr/bin/php8 /usr/bin/php \
  && \
  : "phpminiadmin" \
  && mkdir -p ${DIR} \
@@ -47,4 +49,4 @@ USER dbadmin
 
 EXPOSE 8080
 
-CMD [ "php", "-S", "[::]:8080", "-t", "/opt/dbadmin" ]
+CMD [ "php", "-S", "[::]:8080" ]
