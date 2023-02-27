@@ -1,9 +1,9 @@
-FROM alpine:3.15
+FROM alpine:3.17
 
 LABEL maintainer="batch9703"
 
 ARG TZ="Asia/Tokyo"
-ARG php_ver="8.0.14-r0"
+ARG php_ver="8.1.16-r0"
 ARG DIR="/opt/dbadmin"
 
 ENV LANG="ja_JP.UTF-8"
@@ -16,10 +16,9 @@ RUN set -x \
  && \
  : "php" \
  && apk add --no-cache \
-    php8=${php_ver} \
-    php8-session=${php_ver} \
-    php8-mysqli=${php_ver} \
- && ln -s /usr/bin/php8 /usr/bin/php \
+    php81=${php_ver} \
+    php81-session=${php_ver} \
+    php81-mysqli=${php_ver} \
  && \
  : "phpminiadmin" \
  && mkdir -p ${DIR} \
