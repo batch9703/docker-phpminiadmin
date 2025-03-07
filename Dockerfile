@@ -1,9 +1,8 @@
-FROM alpine:3.20
-
-LABEL maintainer="batch9703"
+FROM alpine:3.21
 
 ARG TZ="Asia/Tokyo"
-ARG php_ver="8.3.13-r0"
+ARG php_ver="8.4.4-r0"
+ARG admin_ver="1.9.240801"
 ARG DIR="/opt/dbadmin"
 
 ENV LANG="ja_JP.UTF-8"
@@ -16,14 +15,14 @@ RUN set -x \
  && \
  : "php" \
  && apk add --no-cache \
-    php83=${php_ver} \
-    php83-session=${php_ver} \
-    php83-mysqli=${php_ver} \
+    php84=${php_ver} \
+    php84-session=${php_ver} \
+    php84-mysqli=${php_ver} \
  && \
  : "phpminiadmin" \
  && mkdir -p ${DIR} \
  && cd ${DIR} \
- && curl -L https://raw.github.com/osalabs/phpminiadmin/master/phpminiadmin.php -o index.php \
+ && curl -L https://raw.githubusercontent.com/osalabs/phpminiadmin/refs/tags/v${admin_ver}/phpminiadmin.php -o index.php \
  && sed -i -e 's/ACCESS_PWD='\'\''/ACCESS_PWD=getenv("ACCESS_PWD")?:""/g' ./index.php \
  && sed -i -e 's/'\''user'\''=>"",/'\''user'\''=>getenv("DB_USER")?:"",/g' ./index.php \
  && sed -i -e 's/'\''pwd'\''=>"",/'\''pwd'\''=>getenv("DB_PASSWORD")?:"",/g' ./index.php \
