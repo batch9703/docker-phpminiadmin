@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
 ARG TZ="Asia/Tokyo"
-ARG php_ver="8.4.4-r0"
+ARG php_ver="8.3.17-r0"
 ARG admin_ver="1.9.240801"
 ARG DIR="/opt/dbadmin"
 
@@ -15,9 +15,9 @@ RUN set -x \
  && \
  : "php" \
  && apk add --no-cache \
-    php84=${php_ver} \
-    php84-session=${php_ver} \
-    php84-mysqli=${php_ver} \
+    php83=${php_ver} \
+    php83-session=${php_ver} \
+    php83-mysqli=${php_ver} \
  && \
  : "phpminiadmin" \
  && mkdir -p ${DIR} \
